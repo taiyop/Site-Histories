@@ -2,4 +2,4 @@
 ---
 Site-Histories is an extension.
 
-<img width="463" alt="image" src="https://user-images.githubusercontent.com/1048048/224480162-a0f2f569-856a-471c-9203-e8481b623ba6.png">
+![Frame 1](https://user-images.githubusercontent.com/1048048/224489905-fe47bef1-0ba9-4650-961d-2c6199a7a72e.png)
