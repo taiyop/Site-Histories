@@ -2,13 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import search = chrome.bookmarks.search;
 
 const App = (): JSX.Element => {
-  const [currentTab, setCurrentTab] = useState<chrome.tabs.Tab>(null);
+  const [currentTab, setCurrentTab] = useState<chrome.tabs.Tab | null>(null);
   const [currentURLHost, setCurrentURLHost] = useState('');
   const [allHistories, setAllHistories] = useState<
     chrome.history.HistoryItem[]
   >([]);
-
-  const query = useRef<HTMLInputElement>(null);
 
   // TODO:startTime, endTimeをテキストボックスから指定
   let searchText = ''
@@ -34,12 +32,11 @@ const App = (): JSX.Element => {
       const regexp = new RegExp(`.*${host}.*`);
 
       chrome.history.search(searchQuery, (historyItems) => {
-        let targetHistories = [];
+        let targetHistories : chrome.history.HistoryItem[] = [];
         historyItems.forEach(historyItem => {
           if(regexp.test(historyItem.url || '')) {
             targetHistories.push(historyItem)
           }
-          // targetHistories.push(historyItem)
         })
         setAllHistories(targetHistories);
       });
@@ -58,13 +55,13 @@ const App = (): JSX.Element => {
       {allHistories.map((item, index) => {
         return (
           <div className='my-4'>
-            <div clasName=''>
+            <div>
               <span className='text-base cursor-pointer'
                     key={index}
                     onClick={ () => { chrome.tabs.create({ url: item.url }) }}
               >{item.title}</span>
               <span className='ml-5 text-xs'>
-                { item.visitCount > 1 && (
+                { item.visitCount && item.visitCount > 1 && (
                   `(${ item.visitCount}) `
                 )}
                 { new Date(item.lastVisitTime as number).toLocaleDateString()}

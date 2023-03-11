@@ -10,6 +10,13 @@ const manifest = defineManifest({
   action: {
     default_popup: "index.html",
   },
+  commands: {
+    _execute_action: {
+      suggested_key: {
+        default: "Ctrl+Shift+P",
+      },
+    },
+  },
   // browser_action: {           // Chromeのツールバーに配置されるアイコン
   //   default_icon: "img/trash.ico",  // 配置されるアイコン
   //   default_title: "Site Histories"  // タイトル
