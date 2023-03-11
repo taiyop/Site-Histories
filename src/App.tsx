@@ -54,21 +54,27 @@ const App = (): JSX.Element => {
       </div>
       {allHistories.map((item, index) => {
         return (
-          <div className='my-4'>
+          <div className='my-4 flex'>
+            <div className='ccc p-1 mx-3'/>
             <div>
-              <span className='text-base cursor-pointer'
-                    key={index}
-                    onClick={ () => { chrome.tabs.create({ url: item.url }) }}
-              >{item.title}</span>
-              <span className='ml-5 text-xs'>
+              <div className='flex'>
+                <span className='text-sm cursor-pointer'
+                      key={index}
+                      onClick={ () => { chrome.tabs.create({ url: item.url }) }}
+                >{item.title}</span>
                 { item.visitCount && item.visitCount > 1 && (
-                  `(${ item.visitCount}) `
+                  <span className='text-xs badge h-fit px-2 py-1 align-middle'>
+                    { item.visitCount}
+                  </span>
                 )}
-                { new Date(item.lastVisitTime as number).toLocaleDateString()}
-              </span>
+              </div>
+              <div className=''>
+                <span className='text-xs'>
+                  { new Date(item.lastVisitTime as number).toLocaleDateString()}
+                </span>
+                <span className='ml-5 text-sm text-red-500 cursor-pointer'>{ new URL(item.url || '').pathname }</span>
+              </div>
             </div>
-            <span className='ml-5 text-sm text-red-500 cursor-pointer'>{ new URL(item.url || '').pathname }</span>
-
           </div>
         );
       })}
