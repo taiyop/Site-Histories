@@ -57,13 +57,13 @@ const App = (): JSX.Element => {
           <div className='my-4 flex'>
             <div className='ccc p-1 mx-3'/>
             <div>
-              <div className='flex'>
+              <div className='flex justify-between'>
                 <span className='text-sm cursor-pointer'
                       key={index}
                       onClick={ () => { chrome.tabs.create({ url: item.url }) }}
                 >{item.title}</span>
                 { item.visitCount && item.visitCount > 1 && (
-                  <span className='text-xs badge h-fit px-2 py-1 align-middle'>
+                  <span className='ml-2 text-xs badge h-fit px-2 py-1 align-middle'>
                     { item.visitCount}
                   </span>
                 )}

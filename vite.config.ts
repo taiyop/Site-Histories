@@ -8,6 +8,7 @@ const manifest = defineManifest({
   version: "1.0.0",
   permissions: ["history", "tabs", "activeTab"],
   action: {
+    default_icon: "src/assets/icon16x16.png",
     default_popup: "index.html",
   },
   commands: {
@@ -17,10 +18,11 @@ const manifest = defineManifest({
       },
     },
   },
-  // browser_action: {           // Chromeのツールバーに配置されるアイコン
-  //   default_icon: "img/trash.ico",  // 配置されるアイコン
-  //   default_title: "Site Histories"  // タイトル
-  // }
+  icons: {
+    16: "src/assets/icon16x16.png",
+    48: "src/assets/icon48x48.png",
+    128: "src/assets/icon128x128.png"
+  },
 });
 
 export default defineConfig({
